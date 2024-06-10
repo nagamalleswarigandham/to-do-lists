@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rock, Paper, Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .game-container {
+            width: 50%;
+            margin: 40px auto;
+            text-align: center;
+        }
+        
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #3e8e41;
+        }
+        
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Rock, Paper, Scissors</h1>
+        <p>Choose your move:</p>
+        <button class="button" id="rock">Rock</button>
+        <button class="button" id="paper">Paper</button>
+        <button class="button" id="scissors">Scissors</button>
+        
+        <div class="result" id="result"></div>
+        
+        <button class="button" id="play-again">Play Again</button>
+        
+        <script>
+            // JavaScript code to handle game logic and user input
+            const userChoice = document.getElementById('rock');
+            const computerChoice = Math.floor(Math.random() * 3);
+            let userScore = 0;
+            let computerScore = 0;
+            
+            userChoice.addEventListener('click', () => {
+                if (computerChoice === 0) {
+                    if (userChoice.id === 'rock') {
+                        document.getElementById('result').innerHTML = 'It\'s a tie!';
+                    } else if (userChoice.id === 'paper') {
+                        document.getElementById('result').innerHTML = 'You win!';
+                        userScore++;
+                    } else if (userChoice.id === 'scissors') {
+                        document.getElementById('result').innerHTML = 'You lose!';
+                        computerScore++;
+                    }
+                } else if (computerChoice === 1) {
+                    if (userChoice.id === 'rock') {
+                        document.getElementById('result').innerHTML = 'You lose!';
+                        computerScore++;
+                    } else if (userChoice.id === 'paper') {
+                        document.getElementById('result').innerHTML = 'It\'s a tie!';
+                    } else if (userChoice.id === 'scissors') {
+                        document.getElementById('result').innerHTML = 'You win!';
+                        userScore++;
+                    }
+                } else {
+                    if (userChoice.id === 'rock') {
+                        document.getElementById('result').innerHTML = 'You win!';
+                        userScore++;
+                    } else if (userChoice.id === 'paper') {
+                        document.getElementById('result').innerHTML = 'You lose!';
+                        computerScore++;
+                    } else if (userChoice.id === 'scissors') {
+                        document.getElementById('result').innerHTML = 'It\'s a tie!';
+                    }
+                }
+                document.getElementById('play-again').addEventListener('click', () => {
+                    userChoice.removeEventListener('click', () => {
+                    });
+                    userChoice.addEventListener('click', () => {
+                        // Reset game state
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
